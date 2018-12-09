@@ -5,25 +5,21 @@ import (
 	"sync"
 )
 
-var wg sync.WaitGroup
-
 func main() {
-	wg.Add(2)
-	go foo()
-	go bar()
+	Example1()
+}
+
+func Example1() {
+	hello := func(wg *sync.WaitGroup, id int) {
+		defer wg.Done()
+		fmt.Printf("Hello from %v\n", id)
+	}
+
+	const numGreeters = 5
+	var wg sync.WaitGroup
+	wg.Add(numGreeters)
+	for i := 0; i < numGreeters; i++ {
+		go hello(&wg, i+1)
+	}
 	wg.Wait()
-}
-
-func foo() {
-	for i := 0; i < 45; i++ {
-		fmt.Println("Foo:", i)
-	}
-	wg.Done()
-}
-
-func bar() {
-	for i := 0; i < 45; i++ {
-		fmt.Println("Bar:", i)
-	}
-	wg.Done()
 }
