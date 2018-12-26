@@ -63,6 +63,26 @@ func (s Suite) String() string {
 	return [...]string{"Spades", "Hearts", "Diamonds", "Clubs"}[s]
 }
 
+// Operation enum
+type Operation int
+
+const (
+	// Withdraw operation
+	Withdraw Operation = iota
+	// Deposit operation
+	Deposit
+)
+
+// String()method for Operation
+func (op Operation) String() string {
+	// here operations is an array, whose size is deducted from the right-hand side
+	operations := [...]string{"WITHDRAW", "DEPOSIT"}
+	if op < Withdraw || op > Deposit {
+		return "UNKNOWN"
+	}
+	return operations[op]
+}
+
 func main() {
 	// SetLogLevel(INFO)
 	// fmt.Println(INFO)

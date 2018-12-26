@@ -1,8 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io/ioutil"
+)
 
 func main() {
+	IfCompact()
+}
+
+func IfElse() {
 	//  if ... else
 	x := 5
 	y := 10
@@ -21,7 +28,29 @@ func main() {
 	} else {
 		fmt.Println("color is NOT blue or red")
 	}
+}
 
+func IfCompact() {
+	const filename = "sample.txt"
+	if contents, err := ioutil.ReadFile(filename); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Printf("%s\n", contents)
+	}
+	// when contents is only declared in the if..else block, then it cannot be accessed out of that block
+	// fmt.Printf("%s\n", contents)
+
+	var contents2 []byte
+	if contents2, err := ioutil.ReadFile(filename); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Printf("%s\n", contents2)
+	}
+	fmt.Printf("%s\n", contents2)
+}
+
+func SwitchCase1() {
+	x := 5
 	// switch
 	switch x {
 	case 5:
@@ -31,4 +60,22 @@ func main() {
 	default:
 		fmt.Println("x is NOT 5 or 10")
 	}
+}
+
+// SwitchCase2 switch without variable, but having conditions in case statement
+func SwitchCase2(score int) string {
+	grade := ""
+	switch {
+	case score < 0 || score > 100:
+		panic(fmt.Sprintf("Wrong score: %d", score))
+	case score < 60:
+		grade = "F"
+	case score < 80:
+		grade = "C"
+	case score < 90:
+		grade = "B"
+	case score <= 100:
+		grade = "A"
+	}
+	return grade
 }
