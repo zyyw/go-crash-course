@@ -12,6 +12,13 @@ func sum(nums ...int) {
 		total += num
 	}
 	fmt.Println(" is", total)
+
+	// the for loop above is equvalent to the for loop below
+	total2 := 0
+	for i := range nums {
+		total2 += nums[i]
+	}
+	fmt.Println("Again, the sum of", nums, "is", total2)
 }
 
 func main() {
