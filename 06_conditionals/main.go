@@ -6,7 +6,8 @@ import (
 )
 
 func main() {
-	IfCompact()
+	//	IfCompact()
+	fmt.Println(SwitchCase2(56))
 }
 
 func IfElse() {
