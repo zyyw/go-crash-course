@@ -94,8 +94,10 @@ func RunFetchConcurrency() {
 }
 
 func main() {
-	// CreateWebServer()
-	FetchPrint()
+
+	CreateWebServer()
+
+	//FetchPrint()
 	// FetchCopyPrint() // go run main.go http://gopl.io
 	// RunFetchConcurrency() // go run main.go https://golang.org http://gopl.io https://godoc.org
 }
