@@ -6,11 +6,11 @@ import (
 	"time"
 )
 
-var wg sync.WaitGroup
+var wg2 sync.WaitGroup
 
 func main() {
 	baton := make(chan int)
-	wg.Add(1)
+	wg2.Add(1)
 
 	// First runner to run his mark
 	go Runner(baton)
@@ -18,7 +18,7 @@ func main() {
 	// Start the race
 	baton <- 1
 
-	wg.Wait()
+	wg2.Wait()
 }
 
 func Runner(baton chan int) {
@@ -41,7 +41,7 @@ func Runner(baton chan int) {
 	// Is the race over
 	if runner == 4 {
 		fmt.Printf("Runner %d Finished, Race Over\n", runner)
-		wg.Done()
+		wg2.Done()
 		return
 	}
 
